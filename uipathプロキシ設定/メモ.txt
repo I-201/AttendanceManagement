@@ -1,0 +1,31 @@
+設定ファイルを編集する
+ローカルアクティビティフィードが無いUiPath Platformをインストールします。
+重要！
+UiPath Robotは起動しないようにしてください。
+
+インストールフォルダー%ProgramFiles(x86)%\UiPath Platformまで進みます。
+UiRobot.exe.configファイルを探し、Notepad++などのテキストエディタを使用して開きます。
+Proxy configurationを探し、コメントタグ（<!––、––>）を削除して、下のタグのコメントアウトを外します。
+proxyaddressタグに、プロキシサーバーのアドレスとポートを入力します。
+
+ファイルを保存して閉じます。
+Navigate to C:\Windows\SysWOW64\config\systemprofile\AppData\Roaming\NuGet for 64-bit Windows or to C:\Windows\System32\config\systemprofile\AppData\Roaming\NuGet for 32-bit Windows.
+Notepad++などのテキストエディタを使用して、NuGet.configファイルを開きます。
+重要！
+このファイルが存在しない場合は、作ってください。
+
+configurationノードに、下記のフォーマットを用いてプロキシアドレスとポートを追加します。
+XML
+ <configuration>
+<config>
+<add key="http_proxy" value="http://proxy_server:808" />
+</config>
+</configuration>
+ファイルを保存して閉じます。
+Robotサービスを再起動します。いま行った変更をロボットに適用するには、この手順が必要です。
+プロキシサーバーの接続を確認する
+ロボットをOrchestratorに接続します。.
+すでに設定済みのロボットがある環境に、いくつかパッケージをデプロイします。
+%localappdata%\UiPath\Activitiesフォルダーに行き、対応するアクティビティパッケージがダウンロードされているか確認します。
+%ALLUSERSPROFILE%\UiPath\Projectsフォルダーに行き、対応するプロセスがダウンロードされているか確認します。
+対応するジョブを実行して、正しく実行されるか確認します。

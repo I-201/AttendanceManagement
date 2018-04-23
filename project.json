@@ -1,0 +1,14 @@
+{
+  "name": "AttendanceManagement",
+  "description": "勤怠管理ロボット",
+  "main": "Main.xaml",
+  "dependencies": {},
+  "excludedData": [
+    "Private:*",
+    "*password*"
+  ],
+  "toolVersion": "18.1.4.0",
+  "projectVersion": "1.0.6683.37498",
+  "packOptions": {},
+  "runtimeOptions": {}
+}
