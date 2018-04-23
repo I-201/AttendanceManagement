@@ -115,67 +115,78 @@
                     <ActivityAction.Argument>
                       <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
                     </ActivityAction.Argument>
-                    <Sequence sap2010:WorkflowViewState.IdRef="Sequence_14">
-                      <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_12">
-                        <ui:ExcelReadColumn DisplayName="Read Column" sap2010:WorkflowViewState.IdRef="ExcelReadColumn_2" Result="[readColumn]" SheetName="[seetName]" StartingCell="A3" />
-                      </Sequence>
-                      <Assign sap2010:WorkflowViewState.IdRef="Assign_8">
-                        <Assign.To>
-                          <OutArgument x:TypeArguments="x:Int32">[cellCount]</OutArgument>
-                        </Assign.To>
-                        <Assign.Value>
-                          <InArgument x:TypeArguments="x:Int32">3</InArgument>
-                        </Assign.Value>
-                      </Assign>
-                      <ui:ForEach x:TypeArguments="x:Object" DisplayName="For each" sap2010:WorkflowViewState.IdRef="ForEach`1_3" Values="[readColumn]">
-                        <ui:ForEach.Body>
-                          <ActivityAction x:TypeArguments="x:Object">
-                            <ActivityAction.Argument>
-                              <DelegateInArgument x:TypeArguments="x:Object" Name="item" />
-                            </ActivityAction.Argument>
-                            <Sequence DisplayName="Body" sap2010:WorkflowViewState.IdRef="Sequence_13">
-                              <Assign sap2010:WorkflowViewState.IdRef="Assign_10">
-                                <Assign.To>
-                                  <OutArgument x:TypeArguments="x:String">[test]</OutArgument>
-                                </Assign.To>
-                                <Assign.Value>
-                                  <InArgument x:TypeArguments="x:String">[item.ToString]</InArgument>
-                                </Assign.Value>
-                              </Assign>
-                              <If Condition="[item.ToString = days]" sap2010:WorkflowViewState.IdRef="If_3">
-                                <If.Then>
-                                  <Sequence sap2010:WorkflowViewState.IdRef="Sequence_15">
-                                    <ui:ExcelWriteCell Cell="[&quot;B&quot; + cellCount.ToString]" DisplayName="Write Cell_出勤時間の記録" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_4" SheetName="[seetName]" Text="9:00" />
-                                    <ui:ExcelWriteCell Cell="[&quot;C&quot; + cellCount.ToString]" DisplayName="Write Cell_退勤時間の記録" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_3" SheetName="[seetName]" Text="[time]" />
-                                  </Sequence>
-                                </If.Then>
-                                <If.Else>
-                                  <Assign sap2010:WorkflowViewState.IdRef="Assign_9">
+                    <Sequence sap2010:WorkflowViewState.IdRef="Sequence_17">
+                      <Sequence sap2010:WorkflowViewState.IdRef="Sequence_16">
+                        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_14">
+                          <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                            <ui:ExcelReadColumn DisplayName="Read Column" sap2010:WorkflowViewState.IdRef="ExcelReadColumn_2" Result="[readColumn]" SheetName="[seetName]" StartingCell="A3" />
+                          </Sequence>
+                          <Assign sap2010:WorkflowViewState.IdRef="Assign_8">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:Int32">[cellCount]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:Int32">3</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                          <ui:ForEach x:TypeArguments="x:Object" DisplayName="For each" sap2010:WorkflowViewState.IdRef="ForEach`1_3" Values="[readColumn]">
+                            <ui:ForEach.Body>
+                              <ActivityAction x:TypeArguments="x:Object">
+                                <ActivityAction.Argument>
+                                  <DelegateInArgument x:TypeArguments="x:Object" Name="item" />
+                                </ActivityAction.Argument>
+                                <Sequence DisplayName="Body" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                                  <Assign sap2010:WorkflowViewState.IdRef="Assign_10">
                                     <Assign.To>
-                                      <OutArgument x:TypeArguments="x:Int32">[cellCount]</OutArgument>
+                                      <OutArgument x:TypeArguments="x:String">[test]</OutArgument>
                                     </Assign.To>
                                     <Assign.Value>
-                                      <InArgument x:TypeArguments="x:Int32">[cellCount + 1]</InArgument>
+                                      <InArgument x:TypeArguments="x:String">[item.ToString]</InArgument>
                                     </Assign.Value>
                                   </Assign>
-                                </If.Else>
-                              </If>
-                            </Sequence>
-                          </ActivityAction>
-                        </ui:ForEach.Body>
-                      </ui:ForEach>
+                                  <If Condition="[item.ToString = days]" sap2010:WorkflowViewState.IdRef="If_3">
+                                    <If.Then>
+                                      <Sequence sap2010:WorkflowViewState.IdRef="Sequence_15">
+                                        <ui:ExcelWriteCell Cell="[&quot;B&quot; + cellCount.ToString]" DisplayName="Write Cell_出勤時間の記録" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_4" SheetName="[seetName]" Text="9:00" />
+                                        <ui:ExcelWriteCell Cell="[&quot;C&quot; + cellCount.ToString]" DisplayName="Write Cell_退勤時間の記録" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_3" SheetName="[seetName]" Text="[time]" />
+                                      </Sequence>
+                                    </If.Then>
+                                    <If.Else>
+                                      <Assign sap2010:WorkflowViewState.IdRef="Assign_9">
+                                        <Assign.To>
+                                          <OutArgument x:TypeArguments="x:Int32">[cellCount]</OutArgument>
+                                        </Assign.To>
+                                        <Assign.Value>
+                                          <InArgument x:TypeArguments="x:Int32">[cellCount + 1]</InArgument>
+                                        </Assign.Value>
+                                      </Assign>
+                                    </If.Else>
+                                  </If>
+                                </Sequence>
+                              </ActivityAction>
+                            </ui:ForEach.Body>
+                          </ui:ForEach>
+                        </Sequence>
+                      </Sequence>
                     </Sequence>
                   </ActivityAction>
                 </ui:ExcelApplicationScope.Body>
               </ui:ExcelApplicationScope>
             </Sequence>
+            <FlowStep.Next>
+              <FlowStep x:Name="__ReferenceID2">
+                <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" Buttons="Ok" DisplayName="Message box" Text="退勤時間を登録しました。" TopMost="True" sap2010:WorkflowViewState.IdRef="MessageBox_3" />
+                <sap2010:WorkflowViewState.IdRef>FlowStep_3</sap2010:WorkflowViewState.IdRef>
+              </FlowStep>
+            </FlowStep.Next>
           </FlowStep>
         </FlowStep.Next>
       </FlowStep>
     </Flowchart.StartNode>
     <x:Reference>__ReferenceID0</x:Reference>
     <x:Reference>__ReferenceID1</x:Reference>
-    <sads:DebugSymbol.Symbol>dypDOlx1c2VyXFJQQVxBdHRlbmRhbmNlTWFuYWdlbWVudFxNYWluLnhhbWwuPQOzAQ8CAQFECVUUAgE6WA2rARgCAQJFC0wUAgE/TQtUFAIBO2APZxgCATZoD28YAgEycA+qASoCAQNKNkpPAgFCRzdHPQIBQFI2Uk0CAT5PN089AgE8ZTplZAIBOWI7YkUCATdtOm0+AgE1ajtqRQIBM3CqAXC2AQIBMHYVpwEgAgEEdxd5IgIBKXoXgQEgAgElggEXpgEkAgEFeBl4vAECASp/QX9CAgEofEJ8TQIBJoIBigGCAZgBAgEjiAEdowEoAgEGeLUBeLkBAgEveIIBeJABAgEteJsBeKcBAgEriQEfkAEoAgEekQEfogEkAgEHjgFKjgFZAgEhiwFLiwFRAgEfkQEtkQFFAgEIkwEjlgEuAgEQmQEjoAEsAgELlAEllAHdAQIBGJUBJZUB3wECARGeAU2eAVwCAQ6bAU6bAVkCAQyUAT2UAWMCARyUAdQBlAHaAQIBG5QBwgGUAc4BAgEZlQE9lQFjAgEWlQHUAZUB3AECARSVAcIBlQHOAQIBEg==</sads:DebugSymbol.Symbol>
+    <x:Reference>__ReferenceID2</x:Reference>
+    <sads:DebugSymbol.Symbol>dypDOlx1c2VyXFJQQVxBdHRlbmRhbmNlTWFuYWdlbWVudFxNYWluLnhhbWwyPQO+AQ8CAQFECVUUAgE+WA2vARgCAQSyARGyAcYBAgECRQtMFAIBQ00LVBQCAT9gD2cYAgE6aA9vGAIBNnAPrgEqAgEFsgF3sgGFAQIBA0o2Sk8CAUZHN0c9AgFEUjZSTQIBQk83Tz0CAUBlOmVkAgE9YjtiRQIBO206bT4CATlqO2pFAgE3cKoBcLYBAgE0dhWrASACAQZ3F6oBIgIBB3gZqQEkAgEIeRt7JgIBLXwbgwEkAgEphAEbqAEoAgEJeh16wAECAS6BAUWBAUYCASx+Rn5RAgEqhAGOAYQBnAECASeKASGlASwCAQp6uQF6vQECATN6hgF6lAECATF6nwF6qwECAS+LASOSASwCASKTASOkASgCAQuQAU6QAV0CASWNAU+NAVUCASOTATGTAUkCAQyVASeYATICARSbASeiATACAQ+WASmWAeEBAgEclwEplwHjAQIBFaABUaABYAIBEp0BUp0BXQIBEJYBQZYBZwIBIJYB2AGWAd4BAgEflgHGAZYB0gECAR2XAUGXAWcCARqXAdgBlwHgAQIBGJcBxgGXAdIBAgEW</sads:DebugSymbol.Symbol>
   </Flowchart>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -188,8 +199,8 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Assign_11" sap:VirtualizedContainerService.HintSize="679,62" />
-      <sap2010:ViewStateData Id="Assign_12" sap:VirtualizedContainerService.HintSize="679,62" />
+      <sap2010:ViewStateData Id="Assign_11" sap:VirtualizedContainerService.HintSize="723,62" />
+      <sap2010:ViewStateData Id="Assign_12" sap:VirtualizedContainerService.HintSize="723,62" />
       <sap2010:ViewStateData Id="ExcelReadColumn_2" sap:VirtualizedContainerService.HintSize="314,59" />
       <sap2010:ViewStateData Id="Sequence_12" sap:VirtualizedContainerService.HintSize="643,183">
         <sap:WorkflowViewStateService.ViewState>
@@ -226,11 +237,34 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="ExcelApplicationScope_2" sap:VirtualizedContainerService.HintSize="679,1412" />
-      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="701,1740">
+      <sap2010:ViewStateData Id="Sequence_16" sap:VirtualizedContainerService.HintSize="687,1427">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_17" sap:VirtualizedContainerService.HintSize="709,1551">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ExcelApplicationScope_2" sap:VirtualizedContainerService.HintSize="723,1660" />
+      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="745,1988">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="MessageBox_3" sap:VirtualizedContainerService.HintSize="200,54" />
+      <sap2010:ViewStateData Id="FlowStep_3">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">200,293</av:Point>
+            <av:Size x:Key="ShapeSize">200,54</av:Size>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
@@ -239,6 +273,7 @@
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">200,203.666666666667</av:Point>
             <av:Size x:Key="ShapeSize">200,54</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">300,257.666666666667 300,293</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
